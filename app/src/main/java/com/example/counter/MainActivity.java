@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
     TextView textView;
     Button reset;
@@ -39,17 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
                 textView.setText(Integer.toString(counter));
 
-                if (counter >= 0 && counter < 33) {
-                    textView.setTextColor(Color.BLACK);
-                } else if (counter >= 33 && counter < 66) {
-                    //counter is bigger or equal than 33 AND smaller than 66
-                    //33, 34, ... 64, 65
-                    textView.setTextColor(Color.RED);
-                } else if (counter >= 66 && counter < 99) {
-                    textView.setTextColor(Color.YELLOW);
-                } else if (counter >= 99) {
-                    textView.setTextColor(Color.BLUE);
+                int currentColor = Color.BLACK;//this is activity level variable
+
+
+                if(counter%33 == 0){
+                    currentColor = getRandomColor();//implement getRandomColor() method
+                    textView.setTextColor(currentColor);
                 }
+
 
             }
         });
@@ -74,7 +73,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }}
+    }
+
+    private int getRandomColor() {
+
+        Random randomcolor = new Random(); // creating Random object
+        int[] colors ={Color.YELLOW,Color.CYAN,Color.RED,R.color.orange,R.color.Nile,R.color.Green,Color.BLACK};
+       int color = randomcolor.nextInt(colors.length);
+
+        return colors[color];
+    }
+}
 
 
 
